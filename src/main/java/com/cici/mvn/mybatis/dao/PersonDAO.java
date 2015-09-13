@@ -65,6 +65,20 @@ public class PersonDAO {
         System.out.println("insert("+person+") --> "+person.getId());
         return id;
     }
+   
+   public int insertBatch(List<Person> persons){
+	     int id = -1;
+	        SqlSession session = sqlSessionFactory.openSession();
+
+	        try {
+	            id = session.insert("Person.batchInsert", persons);
+	        } finally {
+	            session.commit();
+	            session.close();
+	        }
+	        System.out.println("insert("+persons+") --> "+id);
+	        return id;
+	    }
     /**
    * Update an instance of Person into the database.
    * @param person the instance to be persisted.

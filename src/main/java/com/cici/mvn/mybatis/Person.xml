@@ -21,6 +21,18 @@
  	<insert id="insert" parameterType="Person" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO persons (name) VALUES (#{name});
     </insert>
+    
+ 	<insert id="batchInsert" parameterType="java.util.List">
+ 	    <selectKey keyProperty="id" order="AFTER"  
+	        resultType="java.lang.Integer">  
+	        SELECT LAST_INSERT_ID() as id 
+	  	</selectKey>    
+    INSERT INTO persons (name)  
+    VALUES   
+    <foreach collection="list" item="item" index="index" separator="," >  
+        (#{item.name})  
+    </foreach>  
+</insert>
 
     <update id="update" parameterType="Person">
         UPDATE persons
