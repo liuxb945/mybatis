@@ -86,6 +86,19 @@ public class TestMyBatis {
     	userService.addTrans(users);
     }
     
+    @Test
+    public void addTransAnn() throws Exception{
+    	List<User> users=new ArrayList<User>();
+    	for(int i=0;i<5;i++){
+	    	User user=new User();
+	    	user.setUserName("abc"+i);
+	    	user.setPassword("11");
+	    	user.setAge(17);
+	    	users.add(user);
+    	}
+    	userService.addTransAnn(users);
+    }
+    
     
     
     public void update(){

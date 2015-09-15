@@ -9,6 +9,8 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.cici.mvn.mybatis.dao.UserMapper;
@@ -69,4 +71,17 @@ public class UserServiceImpl implements IUserService {
     	}
     	txManager.commit(status);
     }
+	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED,rollbackFor=Exception.class)
+	public void addTransAnn(List<User> users) throws Exception {
+		// TODO Auto-generated method stub
+		for(int i=0;i<users.size();i++){
+	    	if(i<2){
+	    		this.userDao.insert(users.get(i));
+	    	}
+	    	else{
+	    		throw new Exception("kkkk");
+	    	}
+    	}
+	}
 }
