@@ -40,11 +40,19 @@ public class TestMyBatis {
         // logger.info("值："+user.getUserName());
     }
     
+    @Test
     public void add(){
     	User user=new User();
     	user.setUserName("abc");
     	user.setPassword("11");
     	user.setAge(17);
-    	//userService.
+    	userService.add(user);
+    	System.out.println(user.getId());
+    }
+    
+    public void update(){
+    	User user = userService.getUserById(2);
+    	user.setAge(18);
+    	
     }
 }

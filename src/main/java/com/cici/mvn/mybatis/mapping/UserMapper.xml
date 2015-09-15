@@ -20,7 +20,7 @@
     delete from user_t
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.cici.mvn.mybatis.domain.User" >
+  <insert id="insert" parameterType="com.cici.mvn.mybatis.domain.User" useGeneratedKeys="true" keyProperty="id" >
     insert into user_t (id, user_name, password, 
       age)
     values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
