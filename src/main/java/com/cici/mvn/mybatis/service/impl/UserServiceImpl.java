@@ -1,5 +1,7 @@
 package com.cici.mvn.mybatis.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -18,18 +20,23 @@ public class UserServiceImpl implements IUserService {
         return this.userDao.selectByPrimaryKey(userId);
     }
 
-	public void add(User user) {
+	public int add(User user) {
 		// TODO Auto-generated method stub
-		this.userDao.insert(user);
+		return this.userDao.insert(user);
 	}
 
-	public void update(User user) {
+	public int update(User user) {
 		// TODO Auto-generated method stub
-		
+		return this.userDao.updateByPrimaryKey(user);
 	}
 
-	public void delete() {
+	public int delete(int id) {
 		// TODO Auto-generated method stub
-		
+		return this.userDao.deleteByPrimaryKey(id);
+	}
+
+	public int addBatch(List<User> users) {
+		// TODO Auto-generated method stub
+		return this.userDao.insertBatch(users);
 	}
 }

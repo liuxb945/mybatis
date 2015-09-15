@@ -26,6 +26,18 @@
     values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{age,jdbcType=INTEGER})
   </insert>
+  <insert id="insertBatch" useGeneratedKeys="true" parameterType="java.util.List">  
+    <selectKey resultType="int" keyProperty="id" order="AFTER">  
+        SELECT  
+        LAST_INSERT_ID()  
+    </selectKey>  
+    insert into user_t (id, user_name, password, 
+      age)   
+    values  
+    <foreach collection="list" item="item" index="index" separator="," >  
+        (#{item.id},#{item.userName},#{item.password},#{item.age})  
+    </foreach>  
+</insert>
   <insert id="insertSelective" parameterType="com.cici.mvn.mybatis.domain.User" >
     insert into user_t
     <trim prefix="(" suffix=")" suffixOverrides="," >

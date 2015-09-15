@@ -1,10 +1,13 @@
 package com.cici.mvn.mybatis.service;
 
+import java.util.List;
+
 import com.cici.mvn.mybatis.domain.User;
 
 public interface IUserService {  
     public User getUserById(int userId);
-    public void add(User user);
-    public void update(User user);
-    public void delete()
+    public int add(User user);
+    public int update(User user);
+    public int delete(int id);
+    public int addBatch(List<User> users);
 }

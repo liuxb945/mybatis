@@ -1,5 +1,7 @@
 package com.cici.mvn.mybatis.dao;
 
+import java.util.List;
+
 import com.cici.mvn.mybatis.domain.User;
 
 public interface UserMapper {
@@ -14,4 +16,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+    
+    int insertBatch(List<User> list);
 }

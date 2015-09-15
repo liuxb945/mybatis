@@ -1,5 +1,8 @@
 package com.cici.mvn.mybatis.test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;  
 
 import org.apache.log4j.Logger;  
@@ -11,6 +14,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;  
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;  
   
+
+
 
 
 import com.alibaba.fastjson.JSON;  
@@ -49,6 +54,22 @@ public class TestMyBatis {
     	userService.add(user);
     	System.out.println(user.getId());
     }
+    
+    @Test
+    public void addBatch(){
+    	List<User> users=new ArrayList<User>();
+    	for(int i=0;i<5;i++){
+	    	User user=new User();
+	    	user.setUserName("abc"+i);
+	    	user.setPassword("11");
+	    	user.setAge(17);
+	    	users.add(user);
+    	}
+    	userService.addBatch(users);
+    	//System.out.println(user.getId());
+    }
+    
+    //public void addTrans
     
     public void update(){
     	User user = userService.getUserById(2);
