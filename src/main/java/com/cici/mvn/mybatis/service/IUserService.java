@@ -10,4 +10,5 @@ public interface IUserService {
     public int update(User user);
     public int delete(int id);
     public int addBatch(List<User> users);
+    public void addTrans(List<User> users) throws Exception;
 }

@@ -1,10 +1,15 @@
 package com.cici.mvn.mybatis.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.cici.mvn.mybatis.dao.UserMapper;
 import com.cici.mvn.mybatis.domain.User;
@@ -13,7 +18,9 @@ import com.cici.mvn.mybatis.service.IUserService;
 @Service("userService")  
 public class UserServiceImpl implements IUserService {  
     @Resource  
-    private UserMapper userDao;  
+    private UserMapper userDao;
+    @Resource
+    private DataSourceTransactionManager txManager;
       
     public User getUserById(int userId) {  
         // TODO Auto-generated method stub  
@@ -39,4 +46,27 @@ public class UserServiceImpl implements IUserService {
 		// TODO Auto-generated method stub
 		return this.userDao.insertBatch(users);
 	}
+	
+	public void addTrans(List<User> users) throws Exception{
+    	DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+    	def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+
+    	TransactionStatus status = txManager.getTransaction(def);
+    	try {
+    		
+        	for(int i=0;i<users.size();i++){
+    	    	if(i<2){
+    	    		this.userDao.insert(users.get(i));
+    	    	}
+    	    	else{
+    	    		//throw new Exception("kkkk");
+    	    	}
+        	}
+    	}
+    	catch (Exception ex) {
+    	  txManager.rollback(status);
+    	  throw ex;
+    	}
+    	txManager.commit(status);
+    }
 }

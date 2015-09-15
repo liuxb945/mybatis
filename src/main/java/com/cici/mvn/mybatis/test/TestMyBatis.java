@@ -18,6 +18,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
 
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
+
 import com.alibaba.fastjson.JSON;  
 import com.cici.mvn.mybatis.domain.User;
 import com.cici.mvn.mybatis.service.IUserService;
@@ -30,6 +34,7 @@ public class TestMyBatis {
 //  private ApplicationContext ac = null;  
     @Resource  
     private IUserService userService = null;  
+    
   
 //  @Before  
 //  public void before() {  
@@ -68,8 +73,20 @@ public class TestMyBatis {
     	userService.addBatch(users);
     	//System.out.println(user.getId());
     }
+    @Test
+    public void addTrans() throws Exception{
+    	List<User> users=new ArrayList<User>();
+    	for(int i=0;i<5;i++){
+	    	User user=new User();
+	    	user.setUserName("abc"+i);
+	    	user.setPassword("11");
+	    	user.setAge(17);
+	    	users.add(user);
+    	}
+    	userService.addTrans(users);
+    }
     
-    //public void addTrans
+    
     
     public void update(){
     	User user = userService.getUserById(2);
