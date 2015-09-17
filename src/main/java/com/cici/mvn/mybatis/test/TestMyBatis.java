@@ -58,6 +58,16 @@ public class TestMyBatis {
         // logger.info("值："+user.getUserName());
     }
     
+    @Test  
+    public void loadAll() {  
+        List<User> users = userService.selectAll();
+        for(User user:users){
+         System.out.println(user.getUserName()); 
+         System.out.println(user.getPassword());
+        }
+        // logger.info("值："+user.getUserName());
+    }
+    
     @Test
     public void add(){
     	User user=new User();

@@ -89,4 +89,8 @@ public class UserServiceImpl implements IUserService {
 		// TODO Auto-generated method stub
 		return this.userDao.loadById(id);
 	}
+	
+	public List<User> selectAll(){
+		return this.userDao.selectAll();
+	}
 }

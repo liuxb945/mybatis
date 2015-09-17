@@ -23,4 +23,6 @@ public interface UserMapper {
     
     @Select("select id, user_name as username, password, age from user_t where id=#{id}")
     User loadById(int id);
+    
+    List<User> selectAll();
 }
