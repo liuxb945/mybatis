@@ -84,4 +84,9 @@ public class UserServiceImpl implements IUserService {
 	    	}
     	}
 	}
+
+	public User loadById(int id) {
+		// TODO Auto-generated method stub
+		return this.userDao.loadById(id);
+	}
 }

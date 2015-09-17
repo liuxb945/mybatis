@@ -50,6 +50,14 @@ public class TestMyBatis {
         // logger.info("值："+user.getUserName());
     }
     
+    @Test  
+    public void load() {  
+        User user = userService.loadById(1);  
+         System.out.println(user.getUserName()); 
+         System.out.println(user.getPassword());
+        // logger.info("值："+user.getUserName());
+    }
+    
     @Test
     public void add(){
     	User user=new User();
@@ -99,7 +107,10 @@ public class TestMyBatis {
     	userService.addTransAnn(users);
     }
     
-    
+    @Test
+    public void delete(){
+    	userService.delete(33);
+    }
     
     public void update(){
     	User user = userService.getUserById(2);

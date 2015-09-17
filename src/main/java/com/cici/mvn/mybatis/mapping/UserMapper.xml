@@ -27,7 +27,7 @@
       #{age,jdbcType=INTEGER})
   </insert>
   <insert id="insertBatch" useGeneratedKeys="true" parameterType="java.util.List">  
-    <selectKey resultType="int" keyProperty="id" order="AFTER">  
+    <selectKey resultType="long" keyProperty="id" order="AFTER">  
         SELECT  
         LAST_INSERT_ID()  
     </selectKey>  
