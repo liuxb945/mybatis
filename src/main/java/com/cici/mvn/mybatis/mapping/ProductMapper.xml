@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cici.mvn.mybatis.dao.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.cici.mvn.mybatis.domain.Product" >
+    <id column="productid" property="productid" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="descn" property="descn" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    productid, category, name, descn
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from product
+    where productid = #{productid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from product
+    where productid = #{productid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cici.mvn.mybatis.domain.Product" >
+    insert into product (productid, category, name, 
+      descn)
+    values (#{productid,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{descn,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cici.mvn.mybatis.domain.Product" >
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productid != null" >
+        productid,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="descn != null" >
+        descn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productid != null" >
+        #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="descn != null" >
+        #{descn,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cici.mvn.mybatis.domain.Product" >
+    update product
+    <set >
+      <if test="category != null" >
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="descn != null" >
+        descn = #{descn,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where productid = #{productid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cici.mvn.mybatis.domain.Product" >
+    update product
+    set category = #{category,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      descn = #{descn,jdbcType=VARCHAR}
+    where productid = #{productid,jdbcType=VARCHAR}
+  </update>
+</mapper>

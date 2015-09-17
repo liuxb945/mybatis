@@ -23,7 +23,9 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.alibaba.fastjson.JSON;  
+import com.cici.mvn.mybatis.domain.Category;
 import com.cici.mvn.mybatis.domain.User;
+import com.cici.mvn.mybatis.service.ICategoryService;
 import com.cici.mvn.mybatis.service.IUserService;
   
 @RunWith(SpringJUnit4ClassRunner.class)     //表示继承了SpringJUnit4ClassRunner类  
@@ -33,7 +35,10 @@ public class TestMyBatis {
     private static Logger logger = Logger.getLogger(TestMyBatis.class);  
 //  private ApplicationContext ac = null;  
     @Resource  
-    private IUserService userService = null;  
+    private IUserService userService = null;
+    
+    @Resource  
+    private ICategoryService catService = null;
     
   
 //  @Before  
@@ -55,6 +60,13 @@ public class TestMyBatis {
         User user = userService.loadById(1);  
          System.out.println(user.getUserName()); 
          System.out.println(user.getPassword());
+        // logger.info("值："+user.getUserName());
+    }
+    
+    @Test  
+    public void loadCat() {  
+        Category cat=this.catService.loadById("BIRDS");
+        System.out.println(cat.getProducts().size());
         // logger.info("值："+user.getUserName());
     }
     
