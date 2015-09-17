@@ -7,17 +7,6 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="descn" property="descn" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="BaseResultMap1" type="com.cici.mvn.mybatis.domain.Product" >
-    <id column="productid" property="productid" jdbcType="VARCHAR" />
-    <result column="category" property="category" jdbcType="VARCHAR" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="descn" property="descn" jdbcType="VARCHAR" />
-    <association property="cat" javaType="com.cici.mvn.mybatis.domain.Category">  
-        <id column="cid" property="catid" jdbcType="VARCHAR" />
-    	<result column="cname" property="name" jdbcType="VARCHAR" />
-    	<result column="cd" property="descn" jdbcType="VARCHAR" />  
-    </association>
-  </resultMap>
   <sql id="Base_Column_List" >
     productid, category, name, descn
   </sql>

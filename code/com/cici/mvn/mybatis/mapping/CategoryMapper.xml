@@ -6,24 +6,13 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="descn" property="descn" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="BaseResultMap1" type="com.cici.mvn.mybatis.domain.Category" >
-    <id column="cid" property="catid" jdbcType="VARCHAR" />
-    <result column="cname" property="name" jdbcType="VARCHAR" />
-    <result column="cd" property="descn" jdbcType="VARCHAR" />
-    <collection property="products" column="category" 
-              resultMap="com.cici.mvn.mybatis.dao.ProductMapper.BaseResultMap1"/>
-    <!-- <collection property="orderList" ofType="com.kerwin.mybatis.pojo.Orders" column="pid">  
-            <id column="o_id" property="id"/>  
-            <result column="price" property="price"/>  
-        </collection> --> 
-  </resultMap>
   <sql id="Base_Column_List" >
     catid, name, descn
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap1" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
-    c.catid as cid, c.name as cname, c.descn as cd,productid,category,p.name,p.descn
-    from category c left join product p on c.catid=p.category
+    <include refid="Base_Column_List" />
+    from category
     where catid = #{catid,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >

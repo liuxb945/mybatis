@@ -8,8 +8,6 @@ public class Product {
     private String name;
 
     private String descn;
-    
-    private Category cat;
 
     public String getProductid() {
         return productid;
@@ -42,12 +40,4 @@ public class Product {
     public void setDescn(String descn) {
         this.descn = descn == null ? null : descn.trim();
     }
-
-	public Category getCat() {
-		return cat;
-	}
-
-	public void setCat(Category cat) {
-		this.cat = cat;
-	}
 }
