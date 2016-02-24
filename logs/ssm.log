@@ -427,3 +427,18 @@ Caused by: org.xml.sax.SAXParseException; lineNumber: 49; columnNumber: 29; å…ƒç
 [INFO] [2015-09-17 14:13:36][org.springframework.context.support.PropertySourcesPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
 [INFO] [2015-09-17 14:13:36][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
 [INFO] [2015-09-17 14:14:11][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@610ac287: startup date [Thu Sep 17 14:13:35 CST 2015]; root of context hierarchy
+[INFO] [2016-02-24 15:49:56][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-02-24 15:49:58][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@1e6612c: startup date [Wed Feb 24 15:49:58 CST 2016]; root of context hierarchy
+[INFO] [2016-02-24 15:49:58][org.springframework.context.support.PropertySourcesPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-02-24 15:49:58][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-02-24 15:50:00][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@1e6612c: startup date [Wed Feb 24 15:49:58 CST 2016]; root of context hierarchy
+[INFO] [2016-02-24 15:51:00][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-02-24 15:51:00][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@1e6612c: startup date [Wed Feb 24 15:51:00 CST 2016]; root of context hierarchy
+[INFO] [2016-02-24 15:51:00][org.springframework.context.support.PropertySourcesPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-02-24 15:51:00][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-02-24 15:51:01][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@1e6612c: startup date [Wed Feb 24 15:51:00 CST 2016]; root of context hierarchy
+[INFO] [2016-02-24 15:51:30][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-02-24 15:51:30][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@167e37f: startup date [Wed Feb 24 15:51:30 CST 2016]; root of context hierarchy
+[INFO] [2016-02-24 15:51:30][org.springframework.context.support.PropertySourcesPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-02-24 15:51:30][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-02-24 15:51:50][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@167e37f: startup date [Wed Feb 24 15:51:30 CST 2016]; root of context hierarchy

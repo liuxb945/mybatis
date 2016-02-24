@@ -12,26 +12,27 @@
             <property name="suppressAllComments" value="true"/>    
         </commentGenerator>    
         <!--数据库链接URL，用户名、密码 -->    
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/mybatis" userId="root" password="123456">    
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.101.131:3306/phoenix_permission" userId="zhangwei" password="zhangwei">    
         </jdbcConnection>    
         <javaTypeResolver>    
             <property name="forceBigDecimals" value="false"/>    
         </javaTypeResolver>    
         <!-- 生成模型的包名和位置-->    
-        <javaModelGenerator targetPackage="com.cici.mvn.mybatis.domain" targetProject="code">    
+        <javaModelGenerator targetPackage="com.gintong.common.phoenix.permission.entity" targetProject="code">    
             <property name="enableSubPackages" value="true"/>    
             <property name="trimStrings" value="true"/>    
         </javaModelGenerator>    
         <!-- 生成映射文件的包名和位置-->    
-        <sqlMapGenerator targetPackage="com.cici.mvn.mybatis.mapping" targetProject="code">    
+        <sqlMapGenerator targetPackage="com.gintong.common.phoenix.permission.mapper.gen" targetProject="code">    
             <property name="enableSubPackages" value="true"/>    
         </sqlMapGenerator>    
         <!-- 生成DAO的包名和位置-->    
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.cici.mvn.mybatis.dao" targetProject="code">    
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.gintong.common.phoenix.permission.mapper.gen" targetProject="code">    
             <property name="enableSubPackages" value="true"/>    
         </javaClientGenerator>    
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->    
-        <table tableName="ts_navi" domainObjectName="Navi" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
-        	
+        <table tableName="tb_permission" domainObjectName="Permission" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+        <table tableName="tb_res_join" domainObjectName="ResJoin" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		<table tableName="tb_res_share_link" domainObjectName="ResShareLink" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>		
     </context>    
 </generatorConfiguration>
