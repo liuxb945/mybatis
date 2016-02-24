@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gintong.common.phoenix.permission.mapper.gen.ResJoinMapper" >
+  <resultMap id="BaseResultMap" type="com.gintong.common.phoenix.permission.entity.ResJoin" >
+    <id column="res_join_id" property="resJoinId" jdbcType="BIGINT" />
+    <result column="res_id" property="resId" jdbcType="BIGINT" />
+    <result column="res_type" property="resType" jdbcType="SMALLINT" />
+    <result column="send_user_id" property="sendUserId" jdbcType="BIGINT" />
+    <result column="receive_obj_id" property="receiveObjId" jdbcType="BIGINT" />
+    <result column="receive_obj_type" property="receiveObjType" jdbcType="SMALLINT" />
+    <result column="per_time" property="perTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    res_join_id, res_id, res_type, send_user_id, receive_obj_id, receive_obj_type, per_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_res_join
+    where res_join_id = #{resJoinId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_res_join
+    where res_join_id = #{resJoinId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.gintong.common.phoenix.permission.entity.ResJoin" >
+    insert into tb_res_join (res_join_id, res_id, res_type, 
+      send_user_id, receive_obj_id, receive_obj_type, 
+      per_time)
+    values (#{resJoinId,jdbcType=BIGINT}, #{resId,jdbcType=BIGINT}, #{resType,jdbcType=SMALLINT}, 
+      #{sendUserId,jdbcType=BIGINT}, #{receiveObjId,jdbcType=BIGINT}, #{receiveObjType,jdbcType=SMALLINT}, 
+      #{perTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gintong.common.phoenix.permission.entity.ResJoin" >
+    insert into tb_res_join
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resJoinId != null" >
+        res_join_id,
+      </if>
+      <if test="resId != null" >
+        res_id,
+      </if>
+      <if test="resType != null" >
+        res_type,
+      </if>
+      <if test="sendUserId != null" >
+        send_user_id,
+      </if>
+      <if test="receiveObjId != null" >
+        receive_obj_id,
+      </if>
+      <if test="receiveObjType != null" >
+        receive_obj_type,
+      </if>
+      <if test="perTime != null" >
+        per_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resJoinId != null" >
+        #{resJoinId,jdbcType=BIGINT},
+      </if>
+      <if test="resId != null" >
+        #{resId,jdbcType=BIGINT},
+      </if>
+      <if test="resType != null" >
+        #{resType,jdbcType=SMALLINT},
+      </if>
+      <if test="sendUserId != null" >
+        #{sendUserId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveObjId != null" >
+        #{receiveObjId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveObjType != null" >
+        #{receiveObjType,jdbcType=SMALLINT},
+      </if>
+      <if test="perTime != null" >
+        #{perTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gintong.common.phoenix.permission.entity.ResJoin" >
+    update tb_res_join
+    <set >
+      <if test="resId != null" >
+        res_id = #{resId,jdbcType=BIGINT},
+      </if>
+      <if test="resType != null" >
+        res_type = #{resType,jdbcType=SMALLINT},
+      </if>
+      <if test="sendUserId != null" >
+        send_user_id = #{sendUserId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveObjId != null" >
+        receive_obj_id = #{receiveObjId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveObjType != null" >
+        receive_obj_type = #{receiveObjType,jdbcType=SMALLINT},
+      </if>
+      <if test="perTime != null" >
+        per_time = #{perTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where res_join_id = #{resJoinId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gintong.common.phoenix.permission.entity.ResJoin" >
+    update tb_res_join
+    set res_id = #{resId,jdbcType=BIGINT},
+      res_type = #{resType,jdbcType=SMALLINT},
+      send_user_id = #{sendUserId,jdbcType=BIGINT},
+      receive_obj_id = #{receiveObjId,jdbcType=BIGINT},
+      receive_obj_type = #{receiveObjType,jdbcType=SMALLINT},
+      per_time = #{perTime,jdbcType=TIMESTAMP}
+    where res_join_id = #{resJoinId,jdbcType=BIGINT}
+  </update>
+</mapper>

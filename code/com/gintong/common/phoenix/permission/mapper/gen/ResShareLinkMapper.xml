@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gintong.common.phoenix.permission.mapper.gen.ResShareLinkMapper" >
+  <resultMap id="BaseResultMap" type="com.gintong.common.phoenix.permission.entity.ResShareLink" >
+    <id column="share_link_id" property="shareLinkId" jdbcType="BIGINT" />
+    <result column="res_id" property="resId" jdbcType="BIGINT" />
+    <result column="res_type" property="resType" jdbcType="SMALLINT" />
+    <result column="link_create_time" property="linkCreateTime" jdbcType="BIGINT" />
+    <result column="random" property="random" jdbcType="INTEGER" />
+    <result column="encreypt_str" property="encreyptStr" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    share_link_id, res_id, res_type, link_create_time, random, encreypt_str
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_res_share_link
+    where share_link_id = #{shareLinkId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_res_share_link
+    where share_link_id = #{shareLinkId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.gintong.common.phoenix.permission.entity.ResShareLink" >
+    insert into tb_res_share_link (share_link_id, res_id, res_type, 
+      link_create_time, random, encreypt_str
+      )
+    values (#{shareLinkId,jdbcType=BIGINT}, #{resId,jdbcType=BIGINT}, #{resType,jdbcType=SMALLINT}, 
+      #{linkCreateTime,jdbcType=BIGINT}, #{random,jdbcType=INTEGER}, #{encreyptStr,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gintong.common.phoenix.permission.entity.ResShareLink" >
+    insert into tb_res_share_link
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shareLinkId != null" >
+        share_link_id,
+      </if>
+      <if test="resId != null" >
+        res_id,
+      </if>
+      <if test="resType != null" >
+        res_type,
+      </if>
+      <if test="linkCreateTime != null" >
+        link_create_time,
+      </if>
+      <if test="random != null" >
+        random,
+      </if>
+      <if test="encreyptStr != null" >
+        encreypt_str,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shareLinkId != null" >
+        #{shareLinkId,jdbcType=BIGINT},
+      </if>
+      <if test="resId != null" >
+        #{resId,jdbcType=BIGINT},
+      </if>
+      <if test="resType != null" >
+        #{resType,jdbcType=SMALLINT},
+      </if>
+      <if test="linkCreateTime != null" >
+        #{linkCreateTime,jdbcType=BIGINT},
+      </if>
+      <if test="random != null" >
+        #{random,jdbcType=INTEGER},
+      </if>
+      <if test="encreyptStr != null" >
+        #{encreyptStr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gintong.common.phoenix.permission.entity.ResShareLink" >
+    update tb_res_share_link
+    <set >
+      <if test="resId != null" >
+        res_id = #{resId,jdbcType=BIGINT},
+      </if>
+      <if test="resType != null" >
+        res_type = #{resType,jdbcType=SMALLINT},
+      </if>
+      <if test="linkCreateTime != null" >
+        link_create_time = #{linkCreateTime,jdbcType=BIGINT},
+      </if>
+      <if test="random != null" >
+        random = #{random,jdbcType=INTEGER},
+      </if>
+      <if test="encreyptStr != null" >
+        encreypt_str = #{encreyptStr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where share_link_id = #{shareLinkId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gintong.common.phoenix.permission.entity.ResShareLink" >
+    update tb_res_share_link
+    set res_id = #{resId,jdbcType=BIGINT},
+      res_type = #{resType,jdbcType=SMALLINT},
+      link_create_time = #{linkCreateTime,jdbcType=BIGINT},
+      random = #{random,jdbcType=INTEGER},
+      encreypt_str = #{encreyptStr,jdbcType=VARCHAR}
+    where share_link_id = #{shareLinkId,jdbcType=BIGINT}
+  </update>
+</mapper>

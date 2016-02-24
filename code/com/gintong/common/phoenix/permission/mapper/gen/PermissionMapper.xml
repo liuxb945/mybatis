@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gintong.common.phoenix.permission.mapper.gen.PermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.gintong.common.phoenix.permission.entity.Permission" >
+    <id column="per_id" property="perId" jdbcType="BIGINT" />
+    <result column="res_id" property="resId" jdbcType="BIGINT" />
+    <result column="res_type" property="resType" jdbcType="SMALLINT" />
+    <result column="res_acc_rule" property="resAccRule" jdbcType="VARCHAR" />
+    <result column="send_user_id" property="sendUserId" jdbcType="BIGINT" />
+    <result column="receive_obj_id" property="receiveObjId" jdbcType="BIGINT" />
+    <result column="receive_obj_type" property="receiveObjType" jdbcType="SMALLINT" />
+    <result column="per_type" property="perType" jdbcType="SMALLINT" />
+    <result column="per_time" property="perTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    per_id, res_id, res_type, res_acc_rule, send_user_id, receive_obj_id, receive_obj_type, 
+    per_type, per_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.gintong.common.phoenix.permission.entity.PermissionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from tb_permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_permission
+    where per_id = #{perId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_permission
+    where per_id = #{perId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.gintong.common.phoenix.permission.entity.PermissionExample" >
+    delete from tb_permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.gintong.common.phoenix.permission.entity.Permission" >
+    insert into tb_permission (per_id, res_id, res_type, 
+      res_acc_rule, send_user_id, receive_obj_id, 
+      receive_obj_type, per_type, per_time
+      )
+    values (#{perId,jdbcType=BIGINT}, #{resId,jdbcType=BIGINT}, #{resType,jdbcType=SMALLINT}, 
+      #{resAccRule,jdbcType=VARCHAR}, #{sendUserId,jdbcType=BIGINT}, #{receiveObjId,jdbcType=BIGINT}, 
+      #{receiveObjType,jdbcType=SMALLINT}, #{perType,jdbcType=SMALLINT}, #{perTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gintong.common.phoenix.permission.entity.Permission" >
+    insert into tb_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="perId != null" >
+        per_id,
+      </if>
+      <if test="resId != null" >
+        res_id,
+      </if>
+      <if test="resType != null" >
+        res_type,
+      </if>
+      <if test="resAccRule != null" >
+        res_acc_rule,
+      </if>
+      <if test="sendUserId != null" >
+        send_user_id,
+      </if>
+      <if test="receiveObjId != null" >
+        receive_obj_id,
+      </if>
+      <if test="receiveObjType != null" >
+        receive_obj_type,
+      </if>
+      <if test="perType != null" >
+        per_type,
+      </if>
+      <if test="perTime != null" >
+        per_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="perId != null" >
+        #{perId,jdbcType=BIGINT},
+      </if>
+      <if test="resId != null" >
+        #{resId,jdbcType=BIGINT},
+      </if>
+      <if test="resType != null" >
+        #{resType,jdbcType=SMALLINT},
+      </if>
+      <if test="resAccRule != null" >
+        #{resAccRule,jdbcType=VARCHAR},
+      </if>
+      <if test="sendUserId != null" >
+        #{sendUserId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveObjId != null" >
+        #{receiveObjId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveObjType != null" >
+        #{receiveObjType,jdbcType=SMALLINT},
+      </if>
+      <if test="perType != null" >
+        #{perType,jdbcType=SMALLINT},
+      </if>
+      <if test="perTime != null" >
+        #{perTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.gintong.common.phoenix.permission.entity.PermissionExample" resultType="java.lang.Integer" >
+    select count(*) from tb_permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_permission
+    <set >
+      <if test="record.perId != null" >
+        per_id = #{record.perId,jdbcType=BIGINT},
+      </if>
+      <if test="record.resId != null" >
+        res_id = #{record.resId,jdbcType=BIGINT},
+      </if>
+      <if test="record.resType != null" >
+        res_type = #{record.resType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.resAccRule != null" >
+        res_acc_rule = #{record.resAccRule,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendUserId != null" >
+        send_user_id = #{record.sendUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.receiveObjId != null" >
+        receive_obj_id = #{record.receiveObjId,jdbcType=BIGINT},
+      </if>
+      <if test="record.receiveObjType != null" >
+        receive_obj_type = #{record.receiveObjType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.perType != null" >
+        per_type = #{record.perType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.perTime != null" >
+        per_time = #{record.perTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_permission
+    set per_id = #{record.perId,jdbcType=BIGINT},
+      res_id = #{record.resId,jdbcType=BIGINT},
+      res_type = #{record.resType,jdbcType=SMALLINT},
+      res_acc_rule = #{record.resAccRule,jdbcType=VARCHAR},
+      send_user_id = #{record.sendUserId,jdbcType=BIGINT},
+      receive_obj_id = #{record.receiveObjId,jdbcType=BIGINT},
+      receive_obj_type = #{record.receiveObjType,jdbcType=SMALLINT},
+      per_type = #{record.perType,jdbcType=SMALLINT},
+      per_time = #{record.perTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gintong.common.phoenix.permission.entity.Permission" >
+    update tb_permission
+    <set >
+      <if test="resId != null" >
+        res_id = #{resId,jdbcType=BIGINT},
+      </if>
+      <if test="resType != null" >
+        res_type = #{resType,jdbcType=SMALLINT},
+      </if>
+      <if test="resAccRule != null" >
+        res_acc_rule = #{resAccRule,jdbcType=VARCHAR},
+      </if>
+      <if test="sendUserId != null" >
+        send_user_id = #{sendUserId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveObjId != null" >
+        receive_obj_id = #{receiveObjId,jdbcType=BIGINT},
+      </if>
+      <if test="receiveObjType != null" >
+        receive_obj_type = #{receiveObjType,jdbcType=SMALLINT},
+      </if>
+      <if test="perType != null" >
+        per_type = #{perType,jdbcType=SMALLINT},
+      </if>
+      <if test="perTime != null" >
+        per_time = #{perTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where per_id = #{perId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gintong.common.phoenix.permission.entity.Permission" >
+    update tb_permission
+    set res_id = #{resId,jdbcType=BIGINT},
+      res_type = #{resType,jdbcType=SMALLINT},
+      res_acc_rule = #{resAccRule,jdbcType=VARCHAR},
+      send_user_id = #{sendUserId,jdbcType=BIGINT},
+      receive_obj_id = #{receiveObjId,jdbcType=BIGINT},
+      receive_obj_type = #{receiveObjType,jdbcType=SMALLINT},
+      per_type = #{perType,jdbcType=SMALLINT},
+      per_time = #{perTime,jdbcType=TIMESTAMP}
+    where per_id = #{perId,jdbcType=BIGINT}
+  </update>
+</mapper>
