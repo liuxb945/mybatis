@@ -1,5 +1,6 @@
 package com.cici.mvn.mybatis.test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -26,8 +27,17 @@ public class TestMapper {
 	@Test
 	public void testSearch(){
 		NaviExample ne=new NaviExample();
-		Criteria c=ne.createCriteria();
-		c.andAppNameEqualTo("频道");
+		Criteria criteria=ne.createCriteria();
+		Criteria criteria2=ne.createCriteria();
+		//1
+		criteria.andAppNameIsNotNull();
+		List<String> names=new ArrayList<String>();
+		names.add("频道");
+		names.add("首页");
+		criteria.andNaviNameIn(names);
+		//2
+		criteria2.andNaviIdBetween(1, 2);
+		ne.or(criteria2);
 		List<Navi> list=naviMapper.selectByExample(ne);
 		log.warn(list.size());
 	}
