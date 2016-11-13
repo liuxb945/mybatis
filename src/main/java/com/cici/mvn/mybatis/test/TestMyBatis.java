@@ -144,7 +144,7 @@ public class TestMyBatis {
     
     @Test
     public void delete(){
-    	userService.delete(33);
+    	userService.delete(3);
     }
     
     @Test
