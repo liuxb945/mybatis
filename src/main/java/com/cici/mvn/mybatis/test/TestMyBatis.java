@@ -147,9 +147,10 @@ public class TestMyBatis {
     	userService.delete(33);
     }
     
+    @Test
     public void update(){
     	User user = userService.getUserById(2);
     	user.setAge(18);
-    	
+    	userService.update(user);
     }
 }
