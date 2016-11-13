@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gintong.common.phoenix.permission.mapper.gen.PermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.gintong.common.phoenix.permission.entity.Permission" >
+    <id column="per_id" property="perId" jdbcType="BIGINT" />
+    <result column="res_id" property="resId" jdbcType="BIGINT" />
+    <result column="res_type" property="resType" jdbcType="SMALLINT" />
+    <result column="res_acc_rule" property="resAccRule" jdbcType="VARCHAR" />
+    <result column="res_owner_id" property="resOwnerId" jdbcType="BIGINT" />
+    <result column="public_flag" property="publicFlag" jdbcType="INTEGER" />
+    <result column="connect_flag" property="connectFlag" jdbcType="INTEGER" />
+    <result column="share_flag" property="shareFlag" jdbcType="INTEGER" />
+    <result column="per_time" property="perTime" jdbcType="TIMESTAMP" />
+    <result column="app_id" property="appId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    per_id, res_id, res_type, res_acc_rule, res_owner_id, public_flag, connect_flag, 
+    share_flag, per_time, app_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.gintong.common.phoenix.permission.entity.PermissionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from tb_permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_permission
+    where per_id = #{perId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_permission
+    where per_id = #{perId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.gintong.common.phoenix.permission.entity.PermissionExample" >
+    delete from tb_permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.gintong.common.phoenix.permission.entity.Permission" >
+    insert into tb_permission (per_id, res_id, res_type, 
+      res_acc_rule, res_owner_id, public_flag, 
+      connect_flag, share_flag, per_time, 
+      app_id)
+    values (#{perId,jdbcType=BIGINT}, #{resId,jdbcType=BIGINT}, #{resType,jdbcType=SMALLINT}, 
+      #{resAccRule,jdbcType=VARCHAR}, #{resOwnerId,jdbcType=BIGINT}, #{publicFlag,jdbcType=INTEGER}, 
+      #{connectFlag,jdbcType=INTEGER}, #{shareFlag,jdbcType=INTEGER}, #{perTime,jdbcType=TIMESTAMP}, 
+      #{appId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gintong.common.phoenix.permission.entity.Permission" >
+    insert into tb_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="perId != null" >
+        per_id,
+      </if>
+      <if test="resId != null" >
+        res_id,
+      </if>
+      <if test="resType != null" >
+        res_type,
+      </if>
+      <if test="resAccRule != null" >
+        res_acc_rule,
+      </if>
+      <if test="resOwnerId != null" >
+        res_owner_id,
+      </if>
+      <if test="publicFlag != null" >
+        public_flag,
+      </if>
+      <if test="connectFlag != null" >
+        connect_flag,
+      </if>
+      <if test="shareFlag != null" >
+        share_flag,
+      </if>
+      <if test="perTime != null" >
+        per_time,
+      </if>
+      <if test="appId != null" >
+        app_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="perId != null" >
+        #{perId,jdbcType=BIGINT},
+      </if>
+      <if test="resId != null" >
+        #{resId,jdbcType=BIGINT},
+      </if>
+      <if test="resType != null" >
+        #{resType,jdbcType=SMALLINT},
+      </if>
+      <if test="resAccRule != null" >
+        #{resAccRule,jdbcType=VARCHAR},
+      </if>
+      <if test="resOwnerId != null" >
+        #{resOwnerId,jdbcType=BIGINT},
+      </if>
+      <if test="publicFlag != null" >
+        #{publicFlag,jdbcType=INTEGER},
+      </if>
+      <if test="connectFlag != null" >
+        #{connectFlag,jdbcType=INTEGER},
+      </if>
+      <if test="shareFlag != null" >
+        #{shareFlag,jdbcType=INTEGER},
+      </if>
+      <if test="perTime != null" >
+        #{perTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.gintong.common.phoenix.permission.entity.PermissionExample" resultType="java.lang.Integer" >
+    select count(*) from tb_permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_permission
+    <set >
+      <if test="record.perId != null" >
+        per_id = #{record.perId,jdbcType=BIGINT},
+      </if>
+      <if test="record.resId != null" >
+        res_id = #{record.resId,jdbcType=BIGINT},
+      </if>
+      <if test="record.resType != null" >
+        res_type = #{record.resType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.resAccRule != null" >
+        res_acc_rule = #{record.resAccRule,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resOwnerId != null" >
+        res_owner_id = #{record.resOwnerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.publicFlag != null" >
+        public_flag = #{record.publicFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.connectFlag != null" >
+        connect_flag = #{record.connectFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.shareFlag != null" >
+        share_flag = #{record.shareFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.perTime != null" >
+        per_time = #{record.perTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.appId != null" >
+        app_id = #{record.appId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_permission
+    set per_id = #{record.perId,jdbcType=BIGINT},
+      res_id = #{record.resId,jdbcType=BIGINT},
+      res_type = #{record.resType,jdbcType=SMALLINT},
+      res_acc_rule = #{record.resAccRule,jdbcType=VARCHAR},
+      res_owner_id = #{record.resOwnerId,jdbcType=BIGINT},
+      public_flag = #{record.publicFlag,jdbcType=INTEGER},
+      connect_flag = #{record.connectFlag,jdbcType=INTEGER},
+      share_flag = #{record.shareFlag,jdbcType=INTEGER},
+      per_time = #{record.perTime,jdbcType=TIMESTAMP},
+      app_id = #{record.appId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gintong.common.phoenix.permission.entity.Permission" >
+    update tb_permission
+    <set >
+      <if test="resId != null" >
+        res_id = #{resId,jdbcType=BIGINT},
+      </if>
+      <if test="resType != null" >
+        res_type = #{resType,jdbcType=SMALLINT},
+      </if>
+      <if test="resAccRule != null" >
+        res_acc_rule = #{resAccRule,jdbcType=VARCHAR},
+      </if>
+      <if test="resOwnerId != null" >
+        res_owner_id = #{resOwnerId,jdbcType=BIGINT},
+      </if>
+      <if test="publicFlag != null" >
+        public_flag = #{publicFlag,jdbcType=INTEGER},
+      </if>
+      <if test="connectFlag != null" >
+        connect_flag = #{connectFlag,jdbcType=INTEGER},
+      </if>
+      <if test="shareFlag != null" >
+        share_flag = #{shareFlag,jdbcType=INTEGER},
+      </if>
+      <if test="perTime != null" >
+        per_time = #{perTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appId != null" >
+        app_id = #{appId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where per_id = #{perId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gintong.common.phoenix.permission.entity.Permission" >
+    update tb_permission
+    set res_id = #{resId,jdbcType=BIGINT},
+      res_type = #{resType,jdbcType=SMALLINT},
+      res_acc_rule = #{resAccRule,jdbcType=VARCHAR},
+      res_owner_id = #{resOwnerId,jdbcType=BIGINT},
+      public_flag = #{publicFlag,jdbcType=INTEGER},
+      connect_flag = #{connectFlag,jdbcType=INTEGER},
+      share_flag = #{shareFlag,jdbcType=INTEGER},
+      per_time = #{perTime,jdbcType=TIMESTAMP},
+      app_id = #{appId,jdbcType=BIGINT}
+    where per_id = #{perId,jdbcType=BIGINT}
+  </update>
+</mapper>

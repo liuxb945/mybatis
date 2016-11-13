@@ -29,12 +29,14 @@ public class TestMapper {
 		NaviExample ne=new NaviExample();
 		Criteria criteria=ne.createCriteria();
 		Criteria criteria2=ne.createCriteria();
+//		NaviExample.Criterion criterion=new NaviExample.Criterion();
 		//1
 		criteria.andAppNameIsNotNull();
 		List<String> names=new ArrayList<String>();
 		names.add("频道");
 		names.add("首页");
 		criteria.andNaviNameIn(names);
+		ne.or().andAppNameEqualTo("a");
 		//2
 		criteria2.andNaviIdBetween(1, 2);
 		ne.or(criteria2);

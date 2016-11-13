@@ -3,7 +3,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"  
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:tx="http://www.springframework.org/schema/tx"  
-    xmlns:mvc="http://www.springframework.org/schema/mvc"  
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:aop="http://www.springframework.org/schema/aop"  
     xsi:schemaLocation="http://www.springframework.org/schema/beans    
                         http://www.springframework.org/schema/beans/spring-beans-3.1.xsd    
                         http://www.springframework.org/schema/context    
@@ -11,7 +12,9 @@
                         http://www.springframework.org/schema/tx 
                         http://www.springframework.org/schema/tx/spring-tx-3.0.xsd   
                         http://www.springframework.org/schema/mvc    
-                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">  
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+                        http://www.springframework.org/schema/aop 
+         				http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">  
     <!-- 自动扫描 -->  
     <context:component-scan base-package="com.cici.mvn.mybatis" />  
     <!-- 引入配置文件 -->  
@@ -51,4 +54,26 @@
     <!-- 开启事务注解驱动 -->  
     <tx:annotation-driven transaction-manager="transactionManager" />
   
+  	<!-- xml事务 -->
+  	<tx:advice id="userTxAdvice" transaction-manager="transactionManager">
+    <tx:attributes>
+      <tx:method name="delete*" propagation="REQUIRED" read-only="false" 
+                            rollback-for="java.lang.Exception" no-rollback-for="java.lang.RuntimeException"/>
+      <tx:method name="insert*" propagation="REQUIRED" read-only="false" 
+                            rollback-for="java.lang.RuntimeException" />
+      <tx:method name="add*" propagation="REQUIRED" read-only="false" 
+                            rollback-for="java.lang.Exception" />                      
+      <tx:method name="update*" propagation="REQUIRED" read-only="false" 
+                            rollback-for="java.lang.Exception" />
+      
+      <tx:method name="find*" propagation="SUPPORTS"/>
+      <tx:method name="get*" propagation="SUPPORTS"/>
+      <tx:method name="select*" propagation="SUPPORTS"/>
+    </tx:attributes>
+  </tx:advice>
+  
+  <aop:config>    
+    <aop:pointcut id="pc" expression="execution(public * com.cici.mvn.mybatis.service.impl.*.*(..))" /> <!--把事务控制在Service层-->
+    <aop:advisor pointcut-ref="pc" advice-ref="userTxAdvice" />
+  </aop:config>
 </beans>

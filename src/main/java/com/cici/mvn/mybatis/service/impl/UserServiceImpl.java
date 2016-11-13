@@ -61,7 +61,7 @@ public class UserServiceImpl implements IUserService {
     	    		this.userDao.insert(users.get(i));
     	    	}
     	    	else{
-    	    		//throw new Exception("kkkk");
+    	    		throw new Exception("kkkk");
     	    	}
         	}
     	}
@@ -74,7 +74,17 @@ public class UserServiceImpl implements IUserService {
 	
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED,rollbackFor=Exception.class)
 	public void addTransAnn(List<User> users) throws Exception {
-		// TODO Auto-generated method stub
+		for(int i=0;i<users.size();i++){
+	    	if(i<2){
+	    		this.userDao.insert(users.get(i));
+	    	}
+	    	else{
+	    		throw new Exception("kkkk");
+	    	}
+    	}
+	}
+	
+	public void addTransXml(List<User> users) throws Exception {
 		for(int i=0;i<users.size();i++){
 	    	if(i<2){
 	    		this.userDao.insert(users.get(i));

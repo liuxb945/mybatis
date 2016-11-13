@@ -12,6 +12,7 @@ public interface IUserService {
     public int addBatch(List<User> users);
     public void addTrans(List<User> users) throws Exception;
     public void addTransAnn(List<User> users) throws Exception;
+    public void addTransXml(List<User> users) throws Exception;
     public User loadById(int id);
     public List<User> selectAll();
 }

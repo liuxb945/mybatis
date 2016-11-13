@@ -130,6 +130,19 @@ public class TestMyBatis {
     }
     
     @Test
+    public void addTransXml() throws Exception{
+    	List<User> users=new ArrayList<User>();
+    	for(int i=0;i<5;i++){
+	    	User user=new User();
+	    	user.setUserName("abc"+i);
+	    	user.setPassword("11");
+	    	user.setAge(17);
+	    	users.add(user);
+    	}
+    	userService.addTransXml(users);
+    }
+    
+    @Test
     public void delete(){
     	userService.delete(33);
     }

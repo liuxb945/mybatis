@@ -40,7 +40,8 @@
     <!-- 指定logger的设置，additivity指示是否遵循缺省的继承机制-->     
     <logger name="com.cici.mvn.mybatis.dao" additivity="false">     
         <level value ="debug"/>       
-        <appender-ref ref="myConsole" />       
+        <appender-ref ref="myConsole" />
+        <appender-ref ref="myFile" />       
     </logger>     
      
     <!-- 根logger的设置-->     
