@@ -16,6 +16,21 @@
     from user_t
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByIds" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select 
+    <include refid="Base_Column_List" />
+    from user_t
+    where id in ( ${ids} )
+  </select>
+  <select id="selectByIdsTwo" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_t
+    where id in
+    <foreach item="item" index="index" collection="list" open="(" separator="," close=")">  
+  #{item}  
+ </foreach> 
+  </select>
   <select id="selectAll" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />

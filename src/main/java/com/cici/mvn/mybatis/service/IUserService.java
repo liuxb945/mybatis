@@ -15,4 +15,6 @@ public interface IUserService {
     public void addTransXml(List<User> users) throws Exception;
     public User loadById(int id);
     public List<User> selectAll();
+    List<User> selectByIds(String ids);
+    List<User> selectByIdsTwo(List<Integer> ids);
 }

@@ -153,4 +153,21 @@ public class TestMyBatis {
     	user.setAge(18);
     	userService.update(user);
     }
+    
+    @Test
+    public void testSelectByIds(){
+    	String ids="1,2,3,4";
+    	List<User> list=userService.selectByIds(ids);
+    	System.out.println(list.size());
+    }
+    
+    @Test
+    public void testSelectByIdsTwo(){
+    	List<Integer> ids=new ArrayList<Integer>();
+    	for(int i=1;i<=8;i++){
+    		ids.add(i);
+    	}
+    	List<User> list=userService.selectByIdsTwo(ids);
+    	System.out.println(list.size());
+    }
 }

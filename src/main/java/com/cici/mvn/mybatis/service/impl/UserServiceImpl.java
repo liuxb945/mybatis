@@ -103,4 +103,14 @@ public class UserServiceImpl implements IUserService {
 	public List<User> selectAll(){
 		return this.userDao.selectAll();
 	}
+
+	@Override
+	public List<User> selectByIds(String ids) {
+		return this.userDao.selectByIds(ids);
+	}
+
+	@Override
+	public List<User> selectByIdsTwo(List<Integer> ids) {
+		return this.userDao.selectByIdsTwo(ids);
+	}
 }

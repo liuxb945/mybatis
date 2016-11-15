@@ -2,6 +2,7 @@ package com.cici.mvn.mybatis.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.cici.mvn.mybatis.domain.User;
@@ -25,4 +26,6 @@ public interface UserMapper {
     User loadById(int id);
     
     List<User> selectAll();
+    List<User> selectByIds(@Param("ids")String ids);
+    List<User> selectByIdsTwo(List<Integer> ids);
 }
